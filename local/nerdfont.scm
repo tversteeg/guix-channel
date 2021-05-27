@@ -19,18 +19,6 @@
 		 (arguments
 		   '(#:phases
 		     (modify-phases %standard-phases
-				    (replace 'install
-					     (lambda* (#:key outputs #:allow-other-keys)
-						      (let* ((out (assoc-ref outputs "out"))
-							     (source (string-append (getcwd) "."))
-							     (fonts (string-append out "/share/fonts")))
-							(for-each (lambda (file)
-								    (install-file file (string-append fonts "/truetype")))
-								  (find-files source "\\.(ttf|ttc)$"))
-							(for-each (lambda (file)
-								    (install-file file (string-append fonts "/opentype")))
-								  (find-files source "\\.(otf|otc)$"))
-							#t)))
 				    (add-after 'unpack 'delete-unused-fonts
 					       (lambda _ 
 						 (for-each delete-file (find-files (getcwd) "(Fura|Windows)"))
