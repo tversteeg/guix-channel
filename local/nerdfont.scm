@@ -22,6 +22,14 @@
 				    (add-after 'unpack 'delete-unused-fonts
 					       (lambda _ 
 						 (for-each delete-file (find-files (getcwd) "(Fura|Windows)"))
+						 #t))
+				    (add-after 'delete-unused-fonts 'rename-fonts
+					       (lambda _ 
+						 (for-each 
+						   (lambda name 
+						     (rename-file name (string-concatenate 
+									 (string-split (car name) #\ ))))
+						   (find-files "."))
 						 #t)))))
 		 (build-system font-build-system)
 		 (home-page "https://mozilla.github.io/Fira/")
