@@ -27,7 +27,7 @@
 					       (lambda _ 
 						 (for-each 
 						   (lambda name 
-						     (rename-file name (string-concatenate 
+						     (rename-file (car name) (string-concatenate 
 									 (string-split (car name) #\ ))))
 						   (find-files "."))
 						 #t)))))
