@@ -7,12 +7,12 @@
 	       #:use-module (guix build-system cmake)
 	       #:use-module (guix build-system copy)
 	       #:use-module (guix build-system gnu)
+	       #:use-module (local tree-sitter)
 	       #:use-module (gnu packages base)
 	       #:use-module (gnu packages gettext)
 	       #:use-module (gnu packages gperf)
 	       #:use-module (gnu packages jemalloc)
 	       #:use-module (gnu packages pkg-config)
-	       #:use-module (gnu packages node)
 	       #:use-module (gnu packages libevent)
 	       #:use-module (gnu packages lua)
 	       #:use-module (gnu packages serialization)
@@ -195,31 +195,3 @@
 				;; Neovim is licensed under the terms of the Apache 2.0 license,
 				;; except for parts that were contributed under the Vim license.
 				(license (list license:asl2.0 license:vim)))))
-
-(define-public tree-sitter
-	       (package
-		 (name "tree-sitter")
-		 (version "0.19.5")
-		 (source
-		   (origin
-		     (method git-fetch)
-		     (uri (git-reference
-			    (url "https://github.com/tree-sitter/tree-sitter")
-			    (commit (string-append "v" version))))
-		     (file-name (git-file-name name version))
-		     (sha256
-		       (base32 "1qmb0sva28zv6r3c3j7xs9pc8bpwwhkb9vxxndw2zbdn9wkvmbmn"))))
-		 (build-system gnu-build-system)
-		 (arguments
-		   '(#:phases (modify-phases %standard-phases
-					     (delete 'configure))))
-		 (native-inputs
-		   `(("pkg-config" ,pkg-config)
-		     ("node" ,node)))
-		 (synopsis "TODO")
-		 (description
-		   "TODO")
-		 (home-page "https://tree-sitter.github.io")
-		 (license license:expat)))
-
-tree-sitter
