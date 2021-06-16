@@ -111,11 +111,11 @@
 		 (description
 		   "Numbertoggle is a Neovim plugin that in a buffer with 'hybrid' line numbers (:set number relativenumber), numbertoggle switches to absolute line numbers (:set number norelativenumber) automatically when relative numbers don't make sense.")))
 
-(define-public neovim-nightly
+(define-public neovim
 	       (let ((commit "6a77def1ee05d4e4eceddb559bc779cd9b805614")
 		     (revision "0"))
 		 (package
-		   (name "neovim-nightly")
+		   (name "neovim")
 		   (version (string-append "0.5.0-" revision "." (string-take commit 7)))
 		   (source
 		     (origin
